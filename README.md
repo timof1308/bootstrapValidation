@@ -26,8 +26,7 @@ var form = new Validation('#form_id', {
     ],
     submitOnValid: false, // default: true
     showErrorMessage: true, // default: true
-    errorMessageText: "Custom Error Message", // default: "Please check the fields below.
-"
+    errorMessageText: "Custom Error Message", // default: "Please check the fields below."
 });
 ```
 5. validation gets triggered when user submits the form
