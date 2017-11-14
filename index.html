@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>jQuery Form Validation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container" style="padding-top: 50px">
+    <h2>jQuery Form Validation</h2>
+    <form action="" id="form">
+        <div class="form-group">
+            <label class="control-label" for="text1">Required</label>
+            <input type="text" id="text1" class="form-control" name="text1">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text2">E-Mail</label>
+            <input type="text" id="text2" class="form-control" name="text2">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text3">Min</label>
+            <input type="text" id="text3" class="form-control" name="text3">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text4">Max</label>
+            <input type="text" id="text4" class="form-control" name="text4">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text5">Regex</label>
+            <input type="text" id="text5" class="form-control" name="text5" placeholder="regex: test5">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text6">Disabled</label>
+            <input type="text" id="text6" class="form-control" name="text6" disabled>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <input type="checkbox" name="text7" id="text7" value="">
+                <label for="text7"> Check me out</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="text7" id="text75" value="">
+                <label for="text75"> Check me out</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <input type="radio" name="text8" id="text8" value="">
+                <label for="text8"> Check me out</label>
+            </div>
+            <div class="checkbox">
+                <input type="radio" name="text8" id="text85" value="">
+                <label for="text85"> Check me out</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+        <div class="form-group">
+            <button type="reset" id="reset" class="btn btn-default">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="validator.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        new Validation('#form', {
+            fields: [
+                {
+                    name: 'text1',
+                    rule: {
+                        type: 'required',
+                        prompt: 'Field1 is required'
+                    }
+                }, {
+                    name: 'text2',
+                    rule: {
+                        type: 'email',
+                        prompt: 'Field2 must be a valid email',
+                        showSuccess: false
+                    }
+                }, {
+                    name: 'text3',
+                    rule: {
+                        type: 'minLength:5',
+                        prompt: 'Field3 must be at least 5 chars'
+                    }
+                }, {
+                    name: 'text4',
+                    rule: {
+                        type: 'maxLength:5',
+                        prompt: 'Field4 cannot be more that 5 chars'
+                    }
+                }, {
+                    name: 'text5',
+                    rule: {
+                        type: 'regex:^test5$',
+                        prompt: 'Field5 does not match the regular expression'
+                    }
+                }, {
+                    name: 'text6',
+                    rule: {
+                        type: 'required',
+                        prompt: 'Field6 is required'
+                    }
+                }, {
+                    name: 'text7',
+                    rule: {
+                        type: 'checked',
+                        prompt: 'Field7 needs to be checked'
+                    }
+                }, {
+                    name: 'text8',
+                    rule: {
+                        type: 'checked',
+                        prompt: 'Field8 needs to be checked'
+                    }
+                }
+            ],
+            submitOnValid: false,
+            showErrorMessage: true,
+            errorMessageText: "Custom Error Message"
+        });
+
+        $('#form')
+            .on('is-valid', function (e) {
+                console.log('valid');
+            })
+            .on('is-invalid', function (e) {
+                console.log('invalid');
+            });
+
+    });
+</script>
+
+</body>
+</html>
