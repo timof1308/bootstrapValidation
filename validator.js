@@ -256,7 +256,7 @@ Validation.prototype.reset = function () {
     // for each form-group in form
     this.form.find('.form-group').each(function () {
         var group = $(this);
-        var input = $(this).find('input');
+        var input = $(this).find('input, select');
         if (input.length !== 0) {
             // clear input values
             input.val('');
