@@ -14,6 +14,7 @@
         <div class="form-group">
             <label class="control-label" for="text1">Required</label>
             <input type="text" id="text1" class="form-control" name="text1">
+            <div class="help-block">Test Help Block</div>
         </div>
         <div class="form-group">
             <label class="control-label" for="text2">E-Mail</label>
@@ -131,6 +132,12 @@
                     rule: {
                         type: 'checked',
                         prompt: 'Field8 needs to be checked'
+                    }
+                }, {
+                    name: 'text9',
+                    rule: {
+                        type: 'required',
+                        prompt: 'Field9 needs to be checked'
                     }
                 }
             ],

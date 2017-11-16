@@ -105,10 +105,8 @@ Validation.prototype.validate = function () {
                             _this.showError(group);
                             // check if field options has prompt message
                             if (typeof field.rule.prompt !== "undefined") {
-                                // create element with prompt
-                                var prompt = '<div class="help-block">' + field.rule.prompt + '</div>';
                                 // display prompt message
-                                _this.showPrompt(group, prompt);
+                                _this.showPrompt(group, field.rule.prompt);
                             }
                         } else {
                             // remove error from field
@@ -229,10 +227,8 @@ Validation.prototype.validate_on_change = function () {
                             _this.showError(group);
                             // check if field options has prompt message
                             if (typeof field.rule.prompt !== "undefined") {
-                                // create element with prompt
-                                var prompt = '<div class="help-block">' + field.rule.prompt + '</div>';
                                 // display prompt message
-                                _this.showPrompt(group, prompt);
+                                _this.showPrompt(group, field.rule.prompt);
                             }
                         } else {
                             // remove error from field
@@ -283,6 +279,8 @@ Validation.prototype.showError = function (field) {
 // remove error from form-group
 Validation.prototype.removeError = function (field) {
     field.removeClass('has-error');
+    // remove validation help-block from field
+    field.find('div.help-block[data-validation]').remove();
 };
 
 // show success on form-group
@@ -298,32 +296,52 @@ Validation.prototype.removeSuccess = function (field) {
 
 // append prompt message to form-group
 Validation.prototype.showPrompt = function (field, prompt) {
-    if (field.find('div.help-block').length === 0) {
-        field.append(prompt);
+    // search for help-block
+    var block = field.find('div.help-block');
+    // create validation prompt
+    var helper = '<div class="help-block" data-validation>' + prompt + '</div>';
+    if (block.length === 0) {
+        // add help-block to field
+        field.append(helper);
+    } else {
+        // hide default help-block
+        block.hide();
+        // add validation help-block to field
+        field.append(helper);
     }
 };
 
 // remove prompt message from form-group
 Validation.prototype.removePrompt = function (field) {
-    field.find('div.help-block').remove();
+    // remove validation help-block
+    field.find('div.help-block[data-validation]').remove();
+    // show default help-block
+    field.find('div.help-block').show();
 };
 
 // show error message in alert box
 Validation.prototype.showErrorMessage = function () {
     var message = "";
+    // check if errorMessageText is undefined
     if (typeof this.options.errorMessageText === "undefined") {
+        // display default text
         message = "Please check the fields below.";
     } else {
+        // add custom text
         message = this.options.errorMessageText;
     }
+    // create alert-box
     var alert = '<div class="alert alert-danger" id="validationErrorMsg">' +
         '<p>' + message + '</p>' +
         '</div>';
     // place alert box on top of form
-    this.form.prepend(alert);
+    if (this.form.find('#validationErrorMsg').length === 0) {
+        this.form.prepend(alert);
+    }
 };
 
 // remove error message
 Validation.prototype.removeErrorMessage = function () {
+    // remove
     $('#validationErrorMsg').remove();
 };

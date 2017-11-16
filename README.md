@@ -50,9 +50,13 @@ open `index.html` with your browser for live demo
 | checked | check if checkbox / radio is checked |
 
 ### Tested Systems
-- [ ] Chrome v62 on Windows
-- [ ] Firefox v56 on Windows
-- [ ] Safari v11 on Windows
+- [X] Chrome v62 on Windows
+- [X] Firefox v56 on Windows
+- [X] Internet Explorer v11 on Windows
+- [X] Microsoft Edge v25 on Windows
 - [X] Chrome v62 on Mac
 - [X] Firefox v56 on Mac
 - [X] Safari v11 on Mac
+
+#### Known Bugs
+- select fields are not working
