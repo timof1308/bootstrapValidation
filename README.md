@@ -57,6 +57,3 @@ open `index.html` with your browser for live demo
 - [X] Chrome v62 on Mac
 - [X] Firefox v56 on Mac
 - [X] Safari v11 on Mac
-
-#### Known Bugs
-- select fields are not working

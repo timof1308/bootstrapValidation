@@ -85,8 +85,8 @@ Validation.prototype.validate = function () {
         // get all form form-group classes
         this.form.find('.form-group').each(function () {
             var group = $(this);
-            // get input
-            var input = $(this).find('input');
+            // get input or select
+            var input = $(this).find('input, select');
             // check if input is disabled
             if (typeof input.attr("disabled") !== "undefined" && input.attr("disabled") !== false) {
                 // skip this field
@@ -210,8 +210,8 @@ Validation.prototype.validate_on_change = function () {
     var _this = this;
     this.form.find('.form-group').each(function () {
         var group = $(this);
-        // get input
-        var input = $(this).find('input');
+        // get input or select
+        var input = $(this).find('input, select');
         // check if input is disabled
         if (typeof input.attr("disabled") !== "undefined" && input.attr("disabled") !== false) {
             // skip this field
