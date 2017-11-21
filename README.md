@@ -1,8 +1,8 @@
 # jQuery Bootstrap Form Validation
 
-[![Version][https://img.shields.io/badge/Author-Timo_Fischer-red.svg]]
-[![MIT License][license-image]][license]
-[![Version][https://img.shields.io/badge/Version-1.1.0-green.svg]]
+![Version](https://img.shields.io/badge/Author-Timo_Fischer-red.svg)
+![MIT License](https://img.shields.io/github/license/mashape/apistatus.svg)
+![Version](https://img.shields.io/badge/Version-1.1.0-green.svg)
 
 
 ## Getting started
