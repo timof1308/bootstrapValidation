@@ -14,39 +14,39 @@
         <div class="form-group">
             <label class="control-label" for="text1">Required</label>
             <input type="text" id="text1" class="form-control" name="text1">
-            <div class="help-block">Test Help Block</div>
+            <div class="help-block">Initial Help Block</div>
         </div>
         <div class="form-group">
             <label class="control-label" for="text2">E-Mail</label>
             <input type="text" id="text2" class="form-control" name="text2">
         </div>
         <div class="form-group">
-            <label class="control-label" for="text3">Min</label>
+            <label class="control-label" for="text3">Min Length</label>
             <input type="text" id="text3" class="form-control" name="text3">
         </div>
         <div class="form-group">
-            <label class="control-label" for="text4">Max</label>
+            <label class="control-label" for="text4">Max Length</label>
             <input type="text" id="text4" class="form-control" name="text4">
         </div>
         <div class="form-group">
-            <label class="control-label" for="text5">Regex</label>
-            <input type="text" id="text5" class="form-control" name="text5" placeholder="regex: test5">
+            <label class="control-label" for="text5">Regular Expression Validation</label>
+            <input type="text" id="text5" class="form-control" name="text5" placeholder="regex for: test5">
         </div>
         <div class="form-group">
-            <label class="control-label" for="text6">Disabled</label>
-            <input type="text" id="text6" class="form-control" name="text6" disabled>
+            <label class="control-label" for="text6">Disabled Field</label>
+            <input type="text" id="text6" class="form-control" name="text6" disabled placeholder="Validation will not be triggered">
         </div>
         <div class="form-group">
             <div class="checkbox">
                 <label for="text7">
                     <input type="checkbox" name="text7" id="text7" value="">
-                    Check me out
+                    Checkbox 1
                 </label>
             </div>
             <div class="checkbox">
                 <label for="text75">
                     <input type="checkbox" name="text7" id="text75" value="">
-                    Check me out
+                    Checkbox 2
                 </label>
             </div>
         </div>
@@ -54,18 +54,18 @@
             <div class="radio">
                 <label for="text8">
                     <input type="radio" name="text8" id="text8" value="">
-                    Check me out
+                    Radio 1
                 </label>
             </div>
             <div class="radio">
                 <label for="text85">
                     <input type="radio" name="text8" id="text85" value="">
-                    Check me out
+                    Radio 2
                 </label>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="text9">Select</label>
+            <label class="control-label" for="text9">Select Field</label>
             <select id="text9" class="form-control" name="text9">
                 <option value="">Please Select</option>
                 <option value="1">1</option>
@@ -75,10 +75,10 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">Submit Form</button>
         </div>
         <div class="form-group">
-            <button type="reset" id="reset" class="btn btn-default">Reset</button>
+            <button type="reset" id="reset" class="btn btn-default">Reset Fields</button>
         </div>
     </form>
 </div>
@@ -97,62 +97,63 @@
                     name: 'text1',
                     rule: {
                         type: 'required',
-                        prompt: 'Field1 is required'
+                        prompt: 'Please type in any value'
                     }
                 }, {
                     name: 'text2',
                     rule: {
                         type: 'email',
-                        prompt: 'Field2 must be a valid email',
-                        showSuccess: false
+                        prompt: 'Please enter a valid email address'
                     }
                 }, {
                     name: 'text3',
                     rule: {
                         type: 'minLength:5',
-                        prompt: 'Field3 must be at least 5 chars'
+                        prompt: 'Enter at least 5 characters'
                     }
                 }, {
                     name: 'text4',
                     rule: {
                         type: 'maxLength:5',
-                        prompt: 'Field4 cannot be more that 5 chars'
+                        prompt: 'You cannot enter more than 5 characters'
                     }
                 }, {
                     name: 'text5',
                     rule: {
                         type: 'regex:^test5$',
-                        prompt: 'Field5 does not match the regular expression'
+                        prompt: 'This field does not match the regular expression'
                     }
                 }, {
                     name: 'text6',
                     rule: {
                         type: 'required',
-                        prompt: 'Field6 is required'
+                        prompt: 'Field6 is disabled'
                     }
                 }, {
                     name: 'text7',
                     rule: {
                         type: 'checked',
-                        prompt: 'Field7 needs to be checked'
+                        prompt: 'Any checkbox needs to be checked'
                     }
                 }, {
                     name: 'text8',
                     rule: {
                         type: 'checked',
-                        prompt: 'Field8 needs to be checked'
+                        prompt: 'One radio needs to be checked'
                     }
                 }, {
                     name: 'text9',
                     rule: {
                         type: 'required',
-                        prompt: 'Field9 needs to be selected'
+                        prompt: 'Select one field'
                     }
                 }
             ],
             submitOnValid: false,
             showErrorMessage: true,
-            errorMessageText: "Custom Error Message"
+            errorMessageText: "Set Your Custom Error Message",
+            errorGroupClass: "has-error has-feedback",
+            successGroupClass: "has-success has-feedback"
         });
 
         $('#form')

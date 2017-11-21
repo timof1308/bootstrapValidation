@@ -18,7 +18,7 @@ var form = new Validation('#form_id', {
     fields: [{
         name: 'input_name',
         rule: {
-            type: 'validation_type', // default: none
+            type: 'validation_type', // check out validation rules; default: none
             prompt: 'enter error prompt message', // default: none
             showSuccess: false // default: true; show success status for form-group
         }
@@ -27,6 +27,8 @@ var form = new Validation('#form_id', {
     submitOnValid: false, // default: true
     showErrorMessage: true, // default: true
     errorMessageText: "Custom Error Message", // default: "Please check the fields below."
+    errorGroupClass: "has-error has-feedback", // set error class for form-group; default: has-error
+    successGroupClass: "has-success has-feedback" // set success class for form group; default: has-success
 });
 ```
 5. validation gets triggered when user submits the form

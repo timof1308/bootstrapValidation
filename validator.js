@@ -1,7 +1,7 @@
 /*
  jQuery Form Validation for Bootstrap
  Author: Timo Fischer
- Version: 1.0.0
+ Version: 1.1.0
  */
 
 "use strict";
@@ -272,26 +272,26 @@ Validation.prototype.reset = function () {
 
 // show error on form-group
 Validation.prototype.showError = function (field) {
-    field.removeClass('has-success');
-    field.addClass('has-error');
+    field.removeClass(typeof this.options.errorGroupClass !== "undefined" ? this.options.errorGroupClass : 'has-success');
+    field.addClass(typeof this.options.errorGroupClass !== "undefined" ? this.options.errorGroupClass : 'has-error');
 };
 
 // remove error from form-group
 Validation.prototype.removeError = function (field) {
-    field.removeClass('has-error');
+    field.removeClass(typeof this.options.errorGroupClass !== "undefined" ? this.options.errorGroupClass : 'has-error');
     // remove validation help-block from field
     field.find('div.help-block[data-validation]').remove();
 };
 
 // show success on form-group
 Validation.prototype.showSuccess = function (field) {
-    field.removeClass('has-error');
-    field.addClass('has-success');
+    field.removeClass(typeof this.options.errorGroupClass !== "undefined" ? this.options.successGroupClass : 'has-error');
+    field.addClass(typeof this.options.successGroupClass !== "undefined" ? this.options.successGroupClass : 'has-success');
 };
 
 // remove success from form-group
 Validation.prototype.removeSuccess = function (field) {
-    field.removeClass('has-success');
+    field.removeClass(typeof this.options.successGroupClass !== "undefined" ? this.options.successGroupClass : 'has-success');
 };
 
 // append prompt message to form-group
