@@ -48,7 +48,7 @@ open `index.html` with your browser for live demo
 |---|---|
 | required | any word characters | 
 | e-mail | any valid e-mail address | 
-| date | valid date formats: `YYYY-MM-DD` or `MM.DD.YYYY` or `MM DD YYYY` <br> <i>IMPORTANT: only checkes if the format is valid</i> | 
+| date | valid date formats: `YYYY-MM-DD` or `MM.DD.YYYY` or `MM DD YYYY` <br> <i>IMPORTANT: only checks if the format is valid</i> | 
 | minLength:X | value must be at least X characters long | 
 | maxLength:X | value cannot be longer than X characters | 
 | regex:X | regex check for value | 
