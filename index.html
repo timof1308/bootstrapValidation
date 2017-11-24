@@ -73,6 +73,10 @@
                 <option value="3">3</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="control-label" for="text10">Date Format</label>
+            <input type="text" id="text10" class="form-control" name="text10" placeholder="YYYY-MM-DD | MM.DD.YYYY | MM DD YYYY">
+        </div>
 
         <div class="form-group">
             <button type="submit" class="btn btn-success">Submit Form</button>
@@ -146,6 +150,12 @@
                     rule: {
                         type: 'required',
                         prompt: 'Select one field'
+                    }
+                }, {
+                    name: 'text10',
+                    rule: {
+                        type: 'date',
+                        prompt: 'Please enter a valid date format'
                     }
                 }
             ],

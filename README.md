@@ -1,8 +1,8 @@
 # jQuery Bootstrap Form Validation
 
-![Version](https://img.shields.io/badge/Author-Timo_Fischer-red.svg)
-![Version](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/Version-1.1.0-green.svg)
+![Author](https://img.shields.io/badge/Author-Timo_Fischer-red.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.2.0-green.svg)
 
 
 ## Getting started
@@ -21,14 +21,14 @@ var form = new Validation('#form_id', {
     fields: [{
         name: 'input_name',
         rule: {
-            type: 'validation_type', // check out validation rules; default: none
-            prompt: 'enter error prompt message', // default: none
-            showSuccess: false // default: true; show success status for form-group
+            type: 'validation_type', // check if input value matches validation-type
+            prompt: 'enter error prompt message', // displays error help block if value is not valid
+            showSuccess: false // do not show success status on form-group if value is valid
         }
     }, // add more fields 
     ],
-    submitOnValid: false, // default: true
-    errorMessageText: "Custom Error Message", // default: "Please check the fields below."
+    submitOnValid: false, // do not submit html form; triggers 'is-valid'-callback
+    errorMessageText: "Custom Error Message", // set text for error alert
     errorGroupClass: "has-error has-feedback", // set error class for form-group
     successGroupClass: "has-success has-feedback" // set success class for form group
 });
@@ -48,6 +48,7 @@ open `index.html` with your browser for live demo
 |---|---|
 | required | any word characters | 
 | e-mail | any valid e-mail address | 
+| date | valid date format: `YYYY-MM-DD` or `MM.DD.YYYY` or `MM DD YYYY` | 
 | minLength:X | value must be at least X characters long | 
 | maxLength:X | value cannot be longer than X characters | 
 | regex:X | regex check for value | 
@@ -60,11 +61,11 @@ open `index.html` with your browser for live demo
 |`fields.rule.type`| Specify validation pattern for this input name. See [Validation Rules](#validation-rules) for more information | none |
 |`fields.rule.prompt`| Create `.help-block` with prompt text to display error message on invalid input | none |
 |`fields.rule.showSuccess`| Show success status for `.form-group` on valid input | true |
-| submitOnValid | Action after form validation <br> - `true`: submit form and navigate to form action route <br> - `false`: triggered callback <br> See [Form Callbacks](#form-callbacks) for more information | true |
-| showErrorMessage | Show alert-danger on invalid form | true |
-| errorMessageText | Customize alert-danger message | "Please check the fields below." |
-| errorGroupClass | Set your own error-class for `.form-group` on error | "has-error" |
-| successGroupClass | Set your own success-class for `.form-group` on success | "has-success" |
+| `submitOnValid` | Action after form validation <br> - `true`: submit form and navigate to form action route <br> - `false`: triggered callback <br> See [Form Callbacks](#form-callbacks) for more information | true |
+| `showErrorMessage` | Show alert-danger on invalid form | true |
+| `errorMessageText` | Customize alert-danger message | "Please check the fields below." |
+| `errorGroupClass` | Set your own error-class for `.form-group` on error | "has-error" |
+| `successGroupClass` | Set your own success-class for `.form-group` on success | "has-success" |
 
 #### Form Callbacks
 - `is-valid` callback for valid form fields on subimt submit
@@ -80,4 +81,5 @@ open `index.html` with your browser for live demo
 - [X] Safari v11 on Mac
 
 #### Changelog
+- 1.2.0: Added date validation rule
 - 1.1.0: Added custom error and success class options for `form-group`

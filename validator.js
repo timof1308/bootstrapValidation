@@ -17,6 +17,7 @@ function Validation(form, options) {
     this.options = options;
     this.regex = {
         email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/m,
+        date: /^(([0-9]{4}(-[0-9]{1,2}){2})|(([0-9]{1,2}(\s|\.)){2}[0-9]{4}))$/m,
         min: /^minLength:\d*$/m,
         max: /^maxLength:\d*$/m,
         re: /^regex:(.*)$/m,
@@ -135,75 +136,6 @@ Validation.prototype.validate = function () {
 };
 
 /**
- * Check field if rule applies
- * @param input
- * @param rule
- * @param _callback
- */
-Validation.prototype.check = function (input, rule, _callback) {
-    var error = false;
-    if (input.attr("type") === "checkbox" || input.attr("type") === "radio") {
-        // check if field rule type is checked
-        if (rule.type === "checked") {
-            // get all input fields
-            var input_fields = document.getElementsByName(input.attr('name'));
-            // set error to true
-            error = true;
-            // for each input field
-            for (var _i = 0; _i < input_fields.length; _i++) {
-                // check if at least one field for name is checked
-                if (input_fields[_i].checked === true) {
-                    error = false;
-                }
-            }
-        }
-    } else { // input is no checkbox or radio
-        // trim input value
-        var val = input.val().trim();
-        // on field rule type: required
-        if (rule.type === "required") {
-            // check if value is empty string
-            if (val.length === 0) {
-                // field is invalid
-                error = true;
-            }
-        } else if (rule.type === "email") { // on field rule type: email
-            // check email regex for valid email format
-            if (!this.regex.email.test(val)) {
-                // field is invalid
-                error = true;
-            }
-        } else if (this.regex.min.test(rule.type)) { // on field rule type: minLength
-            // get string length after "minLength:"
-            var l = parseInt(rule.type.replace('minLength:', ''));
-            // check if value is shorter than passed length
-            if (val.length < l) {
-                // field is invalid
-                error = true;
-            }
-        } else if (this.regex.max.test(rule.type)) { // on field rule type: maxLength
-            // get string length after "maxLength:"
-            var l = parseInt(rule.type.replace('maxLength:', ''));
-            // check if value is longer than passed length or empty
-            if (val.length > l || val.length === 0) {
-                // field is invalid
-                error = true;
-            }
-        } else if (this.regex.re.test(rule.type)) { // on field rule type: regex
-            // get regex after "regex:"
-            var sub_str = rule.type.replace(this.regex.re_replace, '');
-            var re = new RegExp(sub_str, "g");
-            // check if field matches passed regex
-            if (!re.test(val)) {
-                // field is valid
-                error = true;
-            }
-        }
-    }
-    return _callback(error);
-};
-
-/**
  * Validate form field on change
  */
 Validation.prototype.validate_on_change = function () {
@@ -246,6 +178,82 @@ Validation.prototype.validate_on_change = function () {
             }
         });
     });
+};
+
+/**
+ * Check field if rule applies
+ * @param input
+ * @param rule
+ * @param _callback
+ */
+Validation.prototype.check = function (input, rule, _callback) {
+    var error = false;
+    if (input.attr("type") === "checkbox" || input.attr("type") === "radio") {
+        // check if field rule type is checked
+        if (rule.type === "checked") {
+            // get all input fields
+            var input_fields = document.getElementsByName(input.attr('name'));
+            // set error to true
+            error = true;
+            // for each input field
+            for (var _i = 0; _i < input_fields.length; _i++) {
+                // check if at least one field for name is checked
+                if (input_fields[_i].checked === true) {
+                    error = false;
+                }
+            }
+        }
+    } else { // input is no checkbox or radio
+        // trim input value
+        var val = input.val().trim();
+        // on field rule type: required
+        if (rule.type === "required") {
+            // check if value is empty string
+            if (val.length === 0) {
+                // field is invalid
+                error = true;
+            }
+        } else if (rule.type === "email") { // on field rule type: email
+            // check email regex for valid email format
+            if (!this.regex.email.test(val)) {
+                // field is invalid
+                error = true;
+            }
+        } else if (rule.type === "date") {
+            var date_format_1 = new Date(val);
+            var data_format_2 = Date.parse(val.replace('.', ' '));
+            // check if date has "invalid date" format or does not match date regex
+            if (!this.regex.date.test(val) || isNaN(date_format_1.getTime()) || isNaN(data_format_2)) {
+                error = true;
+            }
+        } else if (this.regex.min.test(rule.type)) { // on field rule type: minLength
+            // get string length after "minLength:"
+            var l = parseInt(rule.type.replace('minLength:', ''));
+            // check if value is shorter than passed length
+            if (val.length < l) {
+                // field is invalid
+                error = true;
+            }
+        } else if (this.regex.max.test(rule.type)) { // on field rule type: maxLength
+            // get string length after "maxLength:"
+            var l = parseInt(rule.type.replace('maxLength:', ''));
+            // check if value is longer than passed length or empty
+            if (val.length > l || val.length === 0) {
+                // field is invalid
+                error = true;
+            }
+        } else if (this.regex.re.test(rule.type)) { // on field rule type: regex
+            // get regex after "regex:"
+            var sub_str = rule.type.replace(this.regex.re_replace, '');
+            var re = new RegExp(sub_str, "g");
+            // check if field matches passed regex
+            if (!re.test(val)) {
+                // field is valid
+                error = true;
+            }
+        }
+    }
+    return _callback(error);
 };
 
 /**
