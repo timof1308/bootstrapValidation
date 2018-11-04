@@ -1,7 +1,7 @@
 /*
  jQuery Form Validation for Bootstrap
  Author: Timo Fischer
- Version: 1.1.0
+ Version: 1.2.1
  */
 
 "use strict";
@@ -25,10 +25,12 @@ function Validation(form, options) {
     };
 
     // check if form is found in DOM
+    /*
     if (this.form.length === 0) {
         console.warn('Element could not be find in DOM.');
         return;
     }
+    */
 
     // check if options are in valid format
     if (typeof this.options !== "object") {
